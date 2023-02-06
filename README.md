@@ -6,7 +6,8 @@
 
 
 
-code desktop 是一款java mybtis模板代码生成工具,由于平时java开发流程大多数都是先建数据库表--> entity --> dao -->mapper -->service-->impl--->controller这个流程固定又重复的操作，code desktop它能帮助开发者简化上面的流程，直接生成模板代码
+code desktop 是一款java mybtis模板代码生成工具,由于平时java开发流程大多数都是先建数据库表--> entity --> dao -->mapper -->service-->impl--->vo--->-->swagger-->
+controller这个流程固定又重复的操作，code desktop它能帮助开发者简化上面的流程，直接生成模板代码
 
 
 
@@ -24,9 +25,10 @@ code desktop 是一款java mybtis模板代码生成工具,由于平时java开发
 
 ## 1.2 直接下载二进制文件
 
-
-
 # 2.使用
 
 ![image-20230206100404460](images/image-20230206100404460.png)
 
+生成的代码目录结构：
+
+![image-20230206104516851](images/image-20230206104516851.png)
