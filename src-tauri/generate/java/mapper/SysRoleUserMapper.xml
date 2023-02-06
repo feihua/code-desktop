@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.springboottpl.dao.SysRoleUserDao">
+
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.SysRoleUser">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP"/>
+        <result column="status_id" property="statusId" jdbcType="TINYINT"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, gmt_create, gmt_modified, status_id, sort, role_id, user_id
+    </sql>
+
+    <select id="query" parameterType="com.example.springboottpl.entity.SysRoleUser" resultMap="BaseResultMap">
+
+    </select>
+
+    <select id="querySysRoleUserList" parameterType="com.example.springboottpl.entity.SysRoleUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role_user
+        <where> 
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="gmtCreate != null">-->
+            <!--    and gmt_create = #{ gmtCreate}-->
+            <!--</if>-->
+            <!--<if test="gmtModified != null">-->
+            <!--    and gmt_modified = #{ gmtModified}-->
+            <!--</if>-->
+            <!--<if test="statusId != null">-->
+            <!--    and status_id = #{ statusId}-->
+            <!--</if>-->
+            <!--<if test="sort != null">-->
+            <!--    and sort = #{ sort}-->
+            <!--</if>-->
+            <!--<if test="roleId != null">-->
+            <!--    and role_id = #{ roleId}-->
+            <!--</if>-->
+            <!--<if test="userId != null">-->
+            <!--    and user_id = #{ userId}-->
+            <!--</if>-->
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.example.springboottpl.entity.SysRoleUser">
+        insert into sys_role_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="statusId != null">
+                status_id,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{ id,jdbcType=BIGINT },
+            </if>
+            <if test="gmtCreate != null">
+                #{ gmtCreate,jdbcType=TIMESTAMP },
+            </if>
+            <if test="gmtModified != null">
+                #{ gmtModified,jdbcType=TIMESTAMP },
+            </if>
+            <if test="statusId != null">
+                #{ statusId,jdbcType=TINYINT },
+            </if>
+            <if test="sort != null">
+                #{ sort,jdbcType=INTEGER },
+            </if>
+            <if test="roleId != null">
+                #{ roleId,jdbcType=BIGINT },
+            </if>
+            <if test="userId != null">
+                #{ userId,jdbcType=BIGINT },
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from sys_role_user where id = #{id,jdbcType=DECIMAL}
+    </delete>
+
+    <update id="update" parameterType="com.example.springboottpl.entity.SysRoleUser">
+        update sys_role_user
+        <set>
+            <if test="id != null">
+                id = #{ id,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{ gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{ gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="statusId != null">
+                status_id = #{ statusId,jdbcType=TINYINT},
+            </if>
+            <if test="sort != null">
+                sort = #{ sort,jdbcType=INTEGER},
+            </if>
+            <if test="roleId != null">
+                role_id = #{ roleId,jdbcType=BIGINT},
+            </if>
+            <if test="userId != null">
+                user_id = #{ userId,jdbcType=BIGINT},
+            </if>
+        </set>
+        <where> 
+            <if test="id != null">
+                and id = #{ id}
+            </if>
+            <if test="gmtCreate != null">
+                and gmt_create = #{ gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                and gmt_modified = #{ gmtModified}
+            </if>
+            <if test="statusId != null">
+                and status_id = #{ statusId}
+            </if>
+            <if test="sort != null">
+                and sort = #{ sort}
+            </if>
+            <if test="roleId != null">
+                and role_id = #{ roleId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{ userId}
+            </if>
+        </where>
+    </update>
+
+    </mapper>

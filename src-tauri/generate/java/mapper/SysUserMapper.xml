@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.springboottpl.dao.SysUserDao">
+
+    <resultMap id="BaseResultMap" type="com.example.springboottpl.entity.SysUser">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP"/>
+        <result column="status_id" property="statusId" jdbcType="TINYINT"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="user_no" property="userNo" jdbcType="BIGINT"/>
+        <result column="mobile" property="mobile" jdbcType="CHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, gmt_create, gmt_modified, status_id, sort, user_no, mobile, real_name, remark, password
+    </sql>
+
+    <select id="query" parameterType="com.example.springboottpl.entity.SysUser" resultMap="BaseResultMap">
+
+    </select>
+
+    <select id="querySysUserList" parameterType="com.example.springboottpl.entity.SysUser" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        <where> 
+            <!--<if test="id != null">-->
+            <!--    and id = #{ id}-->
+            <!--</if>-->
+            <!--<if test="gmtCreate != null">-->
+            <!--    and gmt_create = #{ gmtCreate}-->
+            <!--</if>-->
+            <!--<if test="gmtModified != null">-->
+            <!--    and gmt_modified = #{ gmtModified}-->
+            <!--</if>-->
+            <!--<if test="statusId != null">-->
+            <!--    and status_id = #{ statusId}-->
+            <!--</if>-->
+            <!--<if test="sort != null">-->
+            <!--    and sort = #{ sort}-->
+            <!--</if>-->
+            <!--<if test="userNo != null">-->
+            <!--    and user_no = #{ userNo}-->
+            <!--</if>-->
+            <!--<if test="mobile != null">-->
+            <!--    and mobile = #{ mobile}-->
+            <!--</if>-->
+            <!--<if test="realName != null">-->
+            <!--    and real_name = #{ realName}-->
+            <!--</if>-->
+            <!--<if test="remark != null">-->
+            <!--    and remark = #{ remark}-->
+            <!--</if>-->
+            <!--<if test="password != null">-->
+            <!--    and password = #{ password}-->
+            <!--</if>-->
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.example.springboottpl.entity.SysUser">
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="statusId != null">
+                status_id,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="userNo != null">
+                user_no,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{ id,jdbcType=BIGINT },
+            </if>
+            <if test="gmtCreate != null">
+                #{ gmtCreate,jdbcType=TIMESTAMP },
+            </if>
+            <if test="gmtModified != null">
+                #{ gmtModified,jdbcType=TIMESTAMP },
+            </if>
+            <if test="statusId != null">
+                #{ statusId,jdbcType=TINYINT },
+            </if>
+            <if test="sort != null">
+                #{ sort,jdbcType=INTEGER },
+            </if>
+            <if test="userNo != null">
+                #{ userNo,jdbcType=BIGINT },
+            </if>
+            <if test="mobile != null">
+                #{ mobile,jdbcType=CHAR },
+            </if>
+            <if test="realName != null">
+                #{ realName,jdbcType=VARCHAR },
+            </if>
+            <if test="remark != null">
+                #{ remark,jdbcType=VARCHAR },
+            </if>
+            <if test="password != null">
+                #{ password,jdbcType=VARCHAR },
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from sys_user where id = #{id,jdbcType=DECIMAL}
+    </delete>
+
+    <update id="update" parameterType="com.example.springboottpl.entity.SysUser">
+        update sys_user
+        <set>
+            <if test="id != null">
+                id = #{ id,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{ gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{ gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="statusId != null">
+                status_id = #{ statusId,jdbcType=TINYINT},
+            </if>
+            <if test="sort != null">
+                sort = #{ sort,jdbcType=INTEGER},
+            </if>
+            <if test="userNo != null">
+                user_no = #{ userNo,jdbcType=BIGINT},
+            </if>
+            <if test="mobile != null">
+                mobile = #{ mobile,jdbcType=CHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{ realName,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{ remark,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{ password,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <where> 
+            <if test="id != null">
+                and id = #{ id}
+            </if>
+            <if test="gmtCreate != null">
+                and gmt_create = #{ gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                and gmt_modified = #{ gmtModified}
+            </if>
+            <if test="statusId != null">
+                and status_id = #{ statusId}
+            </if>
+            <if test="sort != null">
+                and sort = #{ sort}
+            </if>
+            <if test="userNo != null">
+                and user_no = #{ userNo}
+            </if>
+            <if test="mobile != null">
+                and mobile = #{ mobile}
+            </if>
+            <if test="realName != null">
+                and real_name = #{ realName}
+            </if>
+            <if test="remark != null">
+                and remark = #{ remark}
+            </if>
+            <if test="password != null">
+                and password = #{ password}
+            </if>
+        </where>
+    </update>
+
+    </mapper>
