@@ -25,6 +25,10 @@ controller这个流程固定又重复的操作，code desktop它能帮助开发�
 
 ## 1.2 直接下载二进制文件
 
+https://github.com/feihua/code-desktop/releases/download/0.1/code-desktop-x64-v0.1-win.zip
+
+解压后，直接双击运行即可
+
 # 2.使用
 
 ![image-20230206100404460](images/image-20230206100404460.png)
