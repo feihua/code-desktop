@@ -98,25 +98,25 @@ fn generate(db_url: &str, db_name: &str, table_name: &str, package_name: &str, s
 }
 
 fn create_from_str(tera: Tera, class_name: &str, mut context: &mut Context, save_path: &str) {
-    write_str_file(tera.clone(), &mut context, get_entity(), format!("java/entity/{}.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_controller(), format!("java/controller/{}Controller.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_dao(), format!("java/dao/{}Dao.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_mapper(), format!("java/mapper/{}Mapper.xml", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_service(), format!("java/service/{}Service.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_impl(), format!("java/service/impl/{}ServiceImpl.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_req(), format!("java/vo/req/{}Req.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_resp(), format!("java/vo/resp/{}Resp.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_entity(), format!("entity/{}.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_controller(), format!("controller/{}Controller.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_dao(), format!("dao/{}Dao.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_mapper(), format!("mapper/{}Mapper.xml", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_service(), format!("service/{}Service.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_impl(), format!("service/impl/{}ServiceImpl.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_req(), format!("vo/req/{}Req.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_resp(), format!("vo/resp/{}Resp.java", class_name).as_str(), save_path);
 }
 
 fn create_from_tpl(tera: &Tera, class_name: &str, mut context: &mut Context) {
-    write_file(tera.clone(), &mut context, "java/entity/entity.java", format!("java/entity/{}Bean.java", class_name).as_str());
-    write_file(tera.clone(), &mut context, "java/controller/controller.java", format!("java/controller/{}Controller.java", class_name).as_str());
-    write_file(tera.clone(), &mut context, "java/dao/dao.java", format!("java/dao/{}Dao.java", class_name).as_str());
-    write_file(tera.clone(), &mut context, "java/mapper/mapper.xml", format!("java/mapper/{}Mapper.xml", class_name).as_str());
-    write_file(tera.clone(), &mut context, "java/service/service.java", format!("java/service/{}Service.java", class_name).as_str());
-    write_file(tera.clone(), &mut context, "java/service/impl/impl.java", format!("java/service/impl/{}ServiceImpl.java", class_name).as_str());
-    write_file(tera.clone(), &mut context, "java/vo/req.java", format!("java/vo/req/{}Req.java", class_name).as_str());
-    write_file(tera.clone(), &mut context, "java/vo/resp.java", format!("java/vo/resp/{}Resp.java", class_name).as_str());
+    write_file(tera.clone(), &mut context, "java/entity/entity.java", format!("entity/{}Bean.java", class_name).as_str());
+    write_file(tera.clone(), &mut context, "java/controller/controller.java", format!("controller/{}Controller.java", class_name).as_str());
+    write_file(tera.clone(), &mut context, "java/dao/dao.java", format!("dao/{}Dao.java", class_name).as_str());
+    write_file(tera.clone(), &mut context, "java/mapper/mapper.xml", format!("mapper/{}Mapper.xml", class_name).as_str());
+    write_file(tera.clone(), &mut context, "java/service/service.java", format!("service/{}Service.java", class_name).as_str());
+    write_file(tera.clone(), &mut context, "java/service/impl/impl.java", format!("service/impl/{}ServiceImpl.java", class_name).as_str());
+    write_file(tera.clone(), &mut context, "java/vo/req.java", format!("vo/req/{}Req.java", class_name).as_str());
+    write_file(tera.clone(), &mut context, "java/vo/resp.java", format!("vo/resp/{}Resp.java", class_name).as_str());
 }
 
 fn write_file(tera: Tera, context: &mut Context, template_file_name: &str, target_file_name: &str) {
