@@ -38,7 +38,7 @@ fn greet(name: &str) -> String {
 }
 
 #[tauri::command]
-fn generate_code(db_url: &str, db_name: &str, table_name: &str, package_name: &str, save_path: &str, t_prefix: &str) -> String {
+fn generate_code(db_url: &str, db_name: &str, table_name: &str, package_name: &str, save_path: &str, t_prefix: &str, font_path_name: &str) -> String {
 
     // 待生成代码的表名
     // let table_name = "sys_user,sys_role_user,sys_role,sys_menu_role,sys_menu";
@@ -46,7 +46,7 @@ fn generate_code(db_url: &str, db_name: &str, table_name: &str, package_name: &s
     let table_names: Vec<&str> = table_name.split(",").collect();
 
     for x in table_names {
-        generate(db_url, db_name, x, package_name, save_path, t_prefix);
+        generate(db_url, db_name, x, package_name, save_path, t_prefix, font_path_name);
     };
 
     format!("Hello, {}! You've been greeted from Rust!", "table_name")
@@ -59,7 +59,7 @@ fn main() {
         .expect("error while running tauri application");
 }
 
-fn generate(db_url: &str, db_name: &str, original_table_name: &str, package_name: &str, save_path: &str, t_prefix: &str) {
+fn generate(db_url: &str, db_name: &str, original_table_name: &str, package_name: &str, save_path: &str, t_prefix: &str, font_path_name: &str) {
     // 模板引擎
     let mut tera = match Tera::new("templates/**/*.*") {
         Ok(t) => t,
@@ -110,8 +110,8 @@ fn generate(db_url: &str, db_name: &str, original_table_name: &str, package_name
     context.insert("all_columns", all_columns.as_str());
 
     create_from_str(tera.clone(), class_name, &mut context, save_path);
-    create_vue_from_str(tera.clone(), table_name, &mut context, save_path);
-    create_react_from_str(tera.clone(), table_name, &mut context, save_path);
+    create_vue_from_str(tera.clone(), table_name, &mut context, font_path_name);
+    create_react_from_str(tera.clone(), table_name, &mut context, font_path_name);
 }
 
 fn create_from_str(tera: Tera, class_name: &str, mut context: &mut Context, save_path: &str) {
