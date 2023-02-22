@@ -6,7 +6,8 @@
 
 
 
-code desktop 是一款java mybtis模板代码生成工具，基于tauri vue开发的，实现了跨平台,平时java开发流程大多数都是先建数据库表--> entity --> dao -->mapper -->service-->impl--->vo--->-->
+code desktop 是一款java mybtis模板代码生成工具，基于tauri vue开发的，实现了跨平台,平时java开发流程大多数都是先建数据库表--> entity --> dao -->mapper -->service-->impl--->vo--->
+react-->vue
 swagger-->
 controller这个流程固定又重复的操作，code desktop它能帮助开发者简化上面的流程，直接生成模板代码
 
@@ -26,14 +27,14 @@ controller这个流程固定又重复的操作，code desktop它能帮助开发�
 
 ## 1.2 直接下载二进制文件
 
-https://github.com/feihua/code-desktop/releases/download/0.1/code-desktop-x64-v0.1-win.zip
+https://github.com/feihua/code-desktop/releases/download/0.2/code-desktop_0.2.0_x64-win.zip
 
 解压后，直接双击运行即可
 
 # 2.使用
 
-![image-20230206100404460](images/image-20230206100404460.png)
+![image-20230222171635872](images/image-20230222171635872.png)
 
 生成的代码目录结构：
 
-![image-20230206104516851](images/image-20230206104516851.png)
+![image-20230222171721801](images/image-20230222171721801.png)
