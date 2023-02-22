@@ -9,15 +9,15 @@ import {{package_name}}.entity.{{class_name}};
 @Mapper
 public interface {{class_name}}Dao {
 
-   {{class_name}} query({{class_name}} record);
+   {{class_name}} query({{class_name}} {{class_name_var}});
 
-   List<{{class_name}}> query{{class_name}}List({{class_name}} record);
+   List<{{class_name}}> query{{class_name}}List({{class_name}} {{class_name_var}});
 
-   int insert({{class_name}} record);
+   int insert({{class_name}} {{class_name_var}});
 
-   int delete(int id);
+   int delete(List<Integer> id);
 
-   int update({{class_name}} record);
+   int update({{class_name}} {{class_name_var}});
 
 }"
 }

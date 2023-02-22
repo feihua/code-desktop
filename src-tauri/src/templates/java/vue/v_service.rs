@@ -11,7 +11,7 @@ import {axiosInstance} from \"@/api/ajax\";
  */
 export const list{{class_name}} = (param: {{class_name}}ListParam): Promise<IResponse> => {
     console.log(param)
-    return axiosInstance.post('api/{{table_name}}_list', param).then(res => res.data);
+    return axiosInstance.post('api/{{class_name_var}}/list', param).then(res => res.data);
 };
 
 /**
@@ -20,7 +20,7 @@ export const list{{class_name}} = (param: {{class_name}}ListParam): Promise<IRes
  * @return {Promise}
  */
 export const add{{class_name}} = (param: Add{{class_name}}Param): Promise<IResponse> => {
-    return axiosInstance.post('api/{{table_name}}_save', param).then(res => res.data);
+    return axiosInstance.post('api/{{class_name_var}}/add', param).then(res => res.data);
 };
 
 /**
@@ -29,7 +29,7 @@ export const add{{class_name}} = (param: Add{{class_name}}Param): Promise<IRespo
  * @return {Promise}
  */
 export const update{{class_name}} = (param: Update{{class_name}}Param): Promise<IResponse> => {
-    return axiosInstance.post('api/{{table_name}}_update', param).then(res => res.data);
+    return axiosInstance.post('api/{{class_name_var}}/update', param).then(res => res.data);
 };
 
 /**
@@ -38,7 +38,7 @@ export const update{{class_name}} = (param: Update{{class_name}}Param): Promise<
  * @return {Promise}
  */
 export const remove{{class_name}} = (ids: Number[]): Promise<IResponse> => {
-    return axiosInstance.post('api/{{table_name}}_delete', {ids: ids}).then(res => res.data);
+    return axiosInstance.post('api/{{class_name_var}}/delete', {ids: ids}).then(res => res.data);
 };
 
 

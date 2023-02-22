@@ -9,7 +9,7 @@ pub mod templates;
 use std::path::PathBuf;
 use crate::model::db::{get_all_columns, get_columns, get_java_columns, get_table_comment};
 use tera::{Tera, Context};
-use heck::ToUpperCamelCase;
+use heck::{ToLowerCamelCase, ToUpperCamelCase};
 use crate::templates::java::controller::controller::get_controller;
 use crate::templates::java::dao::dao::get_dao;
 use crate::templates::java::entity::entity::get_entity;
@@ -22,7 +22,7 @@ use crate::templates::java::react::index::get_react_index;
 use crate::templates::java::react::r_service::get_react_service;
 use crate::templates::java::service::service::get_service;
 use crate::templates::java::service::service_impl::get_impl;
-use crate::templates::java::vo::req::get_req;
+use crate::templates::java::vo::req::{get_add_req, get_list_req, get_req, get_update_req};
 use crate::templates::java::vo::resp::get_resp;
 use crate::templates::java::vue::components::add_form::get_vue_add;
 use crate::templates::java::vue::components::list_table::get_vue_list;
@@ -95,14 +95,17 @@ fn generate(db_url: &str, db_name: &str, original_table_name: &str, package_name
     let binding = ToUpperCamelCase::to_upper_camel_case(table_name);
     // 类名
     let class_name = binding.as_str();
+    let class_name_var = ToLowerCamelCase::to_lower_camel_case(class_name.clone());
     // 包名
     // let package_name = "com.example.springboottpl";
 
     let mut context = Context::new();
     context.insert("table_name", table_name);
+    context.insert("original_table_name", original_table_name);
     context.insert("table_comment", table_comment.as_str());
     context.insert("package_name", package_name);
     context.insert("class_name", class_name);
+    context.insert("class_name_var", class_name_var.as_str());
     context.insert("java_columns", &java_columns);
     context.insert("all_columns", all_columns.as_str());
 
@@ -119,6 +122,9 @@ fn create_from_str(tera: Tera, class_name: &str, mut context: &mut Context, save
     write_str_file(tera.clone(), &mut context, get_service(), format!("service/{}Service.java", class_name).as_str(), save_path);
     write_str_file(tera.clone(), &mut context, get_impl(), format!("service/impl/{}ServiceImpl.java", class_name).as_str(), save_path);
     write_str_file(tera.clone(), &mut context, get_req(), format!("vo/req/{}Req.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_list_req(), format!("vo/req/{}ListReq.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_add_req(), format!("vo/req/{}AddReq.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_update_req(), format!("vo/req/{}UpdateReq.java", class_name).as_str(), save_path);
     write_str_file(tera.clone(), &mut context, get_resp(), format!("vo/resp/{}Resp.java", class_name).as_str(), save_path);
 }
 
