@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class {{class_name}}Req implements Serializable {
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
-    @NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
+    //@NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
     private {{column.java_type}} {{column.java_name}};
 {% endfor %}
 }"
@@ -64,6 +64,7 @@ public class {{class_name}}ListReq implements Serializable {
     private int pageSize;
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
+    //@NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
     private {{column.java_type}} {{column.java_name}};
 {% endfor %}
 }"
@@ -94,7 +95,7 @@ import lombok.NoArgsConstructor;
 public class {{class_name}}AddReq implements Serializable {
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
-    @NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
+    //@NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
     private {{column.java_type}} {{column.java_name}};
 {% endfor %}
 }"
@@ -125,7 +126,7 @@ import lombok.NoArgsConstructor;
 public class {{class_name}}UpdateReq implements Serializable {
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
-    @NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
+    //@NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
     private {{column.java_type}} {{column.java_name}};
 {% endfor %}
 }"
