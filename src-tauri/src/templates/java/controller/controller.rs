@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import {{package_name}}.util.Result;
+import {{package_name}}.util.ResultPage;
 import {{package_name}}.vo.req.{{class_name}}Req;
 import {{package_name}}.vo.req.{{class_name}}ListReq;
 import {{package_name}}.vo.req.{{class_name}}AddReq;
@@ -38,7 +39,7 @@ public class {{class_name}}Controller {
 
    @ApiOperation(\"查询{{table_comment}}列表\")
    @PostMapping(\"/list\")
-   public Result<Map<String,Object>> query{{class_name}}List(@RequestBody @Valid {{class_name}}ListReq record){
+   public Result<ResultPage<{{class_name}}Resp>> query{{class_name}}List(@RequestBody @Valid {{class_name}}ListReq record){
         return Result.success({{class_name_var}}Service.query{{class_name}}List(record));
    }
 

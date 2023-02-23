@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import {{package_name}}.entity.{{class_name}};
+import {{package_name}}.util.ResultPage;
 import {{package_name}}.vo.req.{{class_name}}Req;
 import {{package_name}}.vo.req.{{class_name}}ListReq;
 import {{package_name}}.vo.req.{{class_name}}AddReq;
@@ -37,7 +38,7 @@ public class {{class_name}}ServiceImpl implements {{class_name}}Service {
    }
 
    @Override
-   public Map<String,Object> query{{class_name}}List({{class_name}}ListReq {{class_name_var}}){
+   public ResultPage<{{class_name}}Resp> query{{class_name}}List({{class_name}}ListReq {{class_name_var}}){
 
        PageHelper.startPage({{class_name_var}}.getCurrent(), {{class_name_var}}.getPageSize());
 	   List<{{class_name}}> query = {{class_name_var}}Dao.query{{class_name}}List({{class_name}}.builder().build());
@@ -49,13 +50,8 @@ public class {{class_name}}ServiceImpl implements {{class_name}}Service {
 		   return resp;
 	   }).collect(Collectors.toList());
 
-        Map<String, Object> result = new HashMap<>();
-        result.put(\"page_no\", {{class_name_var}}.getCurrent());
-        result.put(\"page_size\", {{class_name_var}}.getPageSize());
-        result.put(\"total\", pageInfo.getTotal());
-        result.put(\"list\", list);
+        return new ResultPage<>(list,pageInfo.getPageNum(),pageInfo.getPageSize(),pageInfo.getTotal());
 
-        return result;
    }
 
    @Override

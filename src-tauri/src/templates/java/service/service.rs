@@ -3,6 +3,7 @@ pub fn get_service() -> &'static str {
 
 import java.util.Map;
 
+import {{package_name}}.util.ResultPage;
 import {{package_name}}.vo.req.{{class_name}}Req;
 import {{package_name}}.vo.req.{{class_name}}ListReq;
 import {{package_name}}.vo.req.{{class_name}}AddReq;
@@ -13,7 +14,7 @@ public interface {{class_name}}Service {
 
    {{class_name}}Resp query({{class_name}}Req record);
 
-   Map<String,Object> query{{class_name}}List({{class_name}}ListReq {{class_name_var}});
+   ResultPage<{{class_name}}Resp> query{{class_name}}List({{class_name}}ListReq {{class_name_var}});
 
    int insert({{class_name}}AddReq {{class_name_var}});
 
