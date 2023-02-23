@@ -7,6 +7,7 @@ pub mod model;
 pub mod templates;
 
 use std::path::PathBuf;
+use chrono::Local;
 use crate::model::db::{get_all_columns, get_columns, get_java_columns, get_table_comment};
 use tera::{Tera, Context};
 use heck::{ToLowerCamelCase, ToUpperCamelCase};
@@ -38,15 +39,16 @@ fn greet(name: &str) -> String {
 }
 
 #[tauri::command]
-fn generate_code(db_url: &str, db_name: &str, table_name: &str, package_name: &str, save_path: &str, t_prefix: &str, font_path_name: &str) -> String {
+fn generate_code(db_url: &str, db_name: &str, table_name: &str, package_name: &str, save_path: &str,
+                 t_prefix: &str, font_path_name: &str, author: &str) -> String {
 
     // 待生成代码的表名
     // let table_name = "sys_user,sys_role_user,sys_role,sys_menu_role,sys_menu";
 
     let table_names: Vec<&str> = table_name.split(",").collect();
 
-    for x in table_names {
-        generate(db_url, db_name, x, package_name, save_path, t_prefix, font_path_name);
+    for original_table_name in table_names {
+        generate(db_url, db_name, original_table_name, package_name, save_path, t_prefix, font_path_name, author);
     };
 
     format!("Hello, {}! You've been greeted from Rust!", "table_name")
@@ -59,7 +61,8 @@ fn main() {
         .expect("error while running tauri application");
 }
 
-fn generate(db_url: &str, db_name: &str, original_table_name: &str, package_name: &str, save_path: &str, t_prefix: &str, font_path_name: &str) {
+fn generate(db_url: &str, db_name: &str, original_table_name: &str, package_name: &str, save_path: &str,
+            t_prefix: &str, font_path_name: &str, author: &str) {
     // 模板引擎
     let mut tera = match Tera::new("templates/**/*.*") {
         Ok(t) => t,
@@ -99,6 +102,9 @@ fn generate(db_url: &str, db_name: &str, original_table_name: &str, package_name
     // 包名
     // let package_name = "com.example.springboottpl";
 
+    let fmt = "%Y/%m/%d %H:%M:%S";
+    let current_time = Local::now().format(fmt).to_string();
+
     let mut context = Context::new();
     context.insert("table_name", table_name);
     context.insert("original_table_name", original_table_name);
@@ -108,6 +114,8 @@ fn generate(db_url: &str, db_name: &str, original_table_name: &str, package_name
     context.insert("class_name_var", class_name_var.as_str());
     context.insert("java_columns", &java_columns);
     context.insert("all_columns", all_columns.as_str());
+    context.insert("current_time", current_time.as_str());
+    context.insert("author", author);
 
     create_from_str(tera.clone(), class_name, &mut context, save_path);
     create_vue_from_str(tera.clone(), table_name, &mut context, font_path_name);

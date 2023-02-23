@@ -23,12 +23,24 @@ import {{package_name}}.service.{{class_name}}Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+/**
+ * 描述：{{table_comment}}
+ * 作者：{{author}}
+ * 日期：{{current_time}}
+ */
 @Service
 public class {{class_name}}ServiceImpl implements {{class_name}}Service {
 
    @Autowired
    private {{class_name}}Dao {{class_name_var}}Dao;
-
+   /**
+    * 查询{{table_comment}}
+    *
+    * @param {{class_name_var}} 请求参数
+    * @return {{class_name}}Resp
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
    @Override
    public {{class_name}}Resp query({{class_name}}Req {{class_name_var}}){
 
@@ -36,7 +48,14 @@ public class {{class_name}}ServiceImpl implements {{class_name}}Service {
 
        return {{class_name}}Resp.builder().build();
    }
-
+   /**
+    * 查询{{table_comment}}列表
+    *
+    * @param {{class_name_var}} 请求参数
+    * @return {{class_name}}Resp
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
    @Override
    public ResultPage<{{class_name}}Resp> query{{class_name}}List({{class_name}}ListReq {{class_name_var}}){
 
@@ -53,18 +72,39 @@ public class {{class_name}}ServiceImpl implements {{class_name}}Service {
         return new ResultPage<>(list,pageInfo.getPageNum(),pageInfo.getPageSize(),pageInfo.getTotal());
 
    }
-
+   /**
+    * 添加{{table_comment}}
+    *
+    * @param {{class_name_var}} 请求参数
+    * @return int
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
    @Override
    public int insert({{class_name}}AddReq {{class_name_var}}){
 
         return {{class_name_var}}Dao.insert({{class_name}}.builder().build());
    }
-
+   /**
+    * 删除{{table_comment}}
+    *
+    * @param ids 请求参数
+    * @return int
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
    @Override
    public int delete(String ids){
 		return {{class_name_var}}Dao.delete(Arrays.stream(ids.split(\",\")).map(Integer::parseInt).collect(Collectors.toList()));
    }
-
+   /**
+    * 更新{{table_comment}}
+    *
+    * @param {{class_name_var}} 请求参数
+    * @return int
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
    @Override
    public int update({{class_name}}UpdateReq {{class_name_var}}){
 

@@ -6,17 +6,62 @@ import java.util.List;
 
 import {{package_name}}.entity.{{class_name}};
 
+/**
+ * 描述：{{table_comment}}
+ * 作者：{{author}}
+ * 日期：{{current_time}}
+ */
 @Mapper
 public interface {{class_name}}Dao {
 
+   /**
+    * 查询{{table_comment}}
+    *
+    * @param {{class_name_var}} 请求参数
+    * @return {{class_name}}
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
    {{class_name}} query({{class_name}} {{class_name_var}});
 
+   /**
+    * 查询{{table_comment}}列表
+    *
+    * @param {{class_name_var}} 请求参数
+    * @return List<{{class_name}}>
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
    List<{{class_name}}> query{{class_name}}List({{class_name}} {{class_name_var}});
 
+   /**
+    * 添加{{table_comment}}
+    *
+    * @param {{class_name_var}} 请求参数
+    * @return int
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
    int insert({{class_name}} {{class_name_var}});
 
-   int delete(List<Integer> id);
+   /**
+    * 删除{{table_comment}}
+    *
+    * @param ids 请求参数
+    * @return int
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
+   int delete(List<Integer> ids);
 
+   /**
+    * 更新{{table_comment}}
+    *
+    * @param {{class_name_var}} 请求参数
+    * @return int
+    * @author {{author}}
+    * @date: {{current_time}}
+    */
    int update({{class_name}} {{class_name_var}});
 
 }"

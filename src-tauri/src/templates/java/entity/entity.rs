@@ -9,6 +9,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 描述：{{table_comment}}
+ * 作者：{{author}}
+ * 日期：{{current_time}}
+ */
 @Data
 @Builder
 @NoArgsConstructor
