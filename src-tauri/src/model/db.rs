@@ -124,7 +124,7 @@ pub fn get_java_columns(columns: Vec<Columns>) -> Vec<JavaColumns> {
 
     for x in columns {
         java_columns.push(JavaColumns {
-            db_name: ToLowerCamelCase::to_lower_camel_case(x.column_name.clone().as_str()),
+            db_name: x.column_name.clone(),
             java_name: ToLowerCamelCase::to_lower_camel_case(x.column_name.as_str()),
             db_type: x.data_type.clone(),
             java_type: get_java_type(x.data_type.as_str()).to_string(),

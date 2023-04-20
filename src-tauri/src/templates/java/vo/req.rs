@@ -25,10 +25,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(\"{{table_comment}}请求vo\")
-public class {{class_name}}Req implements Serializable {
+public class {{class_name}}ReqVo implements Serializable {
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
-    //@NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
+    //@NotBlank(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
     private {{column.java_type}} {{column.java_name}};
 {% endfor %}
 }"
@@ -61,8 +61,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(\"{{table_comment}}请求listVVo\")
-public class {{class_name}}ListReq implements Serializable {
+@ApiModel(\"{{table_comment}}请求listVo\")
+public class {{class_name}}ListReqVo implements Serializable {
 
     @ApiModelProperty(\"当前页\")
     @NotNull(message = \"current当前页不能为空\")
@@ -74,7 +74,7 @@ public class {{class_name}}ListReq implements Serializable {
     private int pageSize;
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
-    //@NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
+    //@NotBlank(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
     private {{column.java_type}} {{column.java_name}};
 {% endfor %}
 }"
@@ -107,10 +107,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(\"{{table_comment}}请求addVo\")
-public class {{class_name}}AddReq implements Serializable {
+public class {{class_name}}AddReqVo implements Serializable {
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
-    //@NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
+    //@NotBlank(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
     private {{column.java_type}} {{column.java_name}};
 {% endfor %}
 }"
@@ -143,10 +143,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(\"{{table_comment}}请求updateVo\")
-public class {{class_name}}UpdateReq implements Serializable {
+public class {{class_name}}UpdateReqVo implements Serializable {
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
-    //@NotNull(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
+    //@NotBlank(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")
     private {{column.java_type}} {{column.java_name}};
 {% endfor %}
 }"

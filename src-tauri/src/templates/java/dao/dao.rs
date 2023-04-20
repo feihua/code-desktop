@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-import {{package_name}}.entity.{{class_name}};
+import {{package_name}}.entity.{{class_name}}Bean;
 
 /**
  * 描述：{{table_comment}}
@@ -22,7 +22,7 @@ public interface {{class_name}}Dao {
     * @author {{author}}
     * @date: {{current_time}}
     */
-   {{class_name}} query({{class_name}} {{class_name_var}});
+   {{class_name}}Bean query{{class_name}}({{class_name}}Bean {{class_name_var}});
 
    /**
     * 查询{{table_comment}}列表
@@ -32,7 +32,7 @@ public interface {{class_name}}Dao {
     * @author {{author}}
     * @date: {{current_time}}
     */
-   List<{{class_name}}> query{{class_name}}List({{class_name}} {{class_name_var}});
+   List<{{class_name}}Bean> query{{class_name}}List({{class_name}}Bean {{class_name_var}});
 
    /**
     * 添加{{table_comment}}
@@ -42,7 +42,7 @@ public interface {{class_name}}Dao {
     * @author {{author}}
     * @date: {{current_time}}
     */
-   int insert({{class_name}} {{class_name_var}});
+   int save{{class_name}}({{class_name}}Bean {{class_name_var}});
 
    /**
     * 删除{{table_comment}}
@@ -52,7 +52,7 @@ public interface {{class_name}}Dao {
     * @author {{author}}
     * @date: {{current_time}}
     */
-   int delete(List<Integer> ids);
+   int delete{{class_name}}(List<Integer> ids);
 
    /**
     * 更新{{table_comment}}
@@ -62,7 +62,7 @@ public interface {{class_name}}Dao {
     * @author {{author}}
     * @date: {{current_time}}
     */
-   int update({{class_name}} {{class_name_var}});
+   int update{{class_name}}({{class_name}}Bean {{class_name_var}});
 
 }"
 }

@@ -20,9 +20,9 @@
       <el-form-item label="后端路径">
         <el-input v-model="gerateForm.path_name" placeholder="D:\workspace\demo\src\main\java\com\example"/>
       </el-form-item>
-      <el-form-item label="前端路径">
-        <el-input v-model="gerateForm.font_path_name" placeholder="D:\workspace\demo\src\main\java\com\example"/>
-      </el-form-item>
+<!--      <el-form-item label="前端路径">-->
+<!--        <el-input v-model="gerateForm.font_path_name" placeholder="D:\workspace\demo\src\main\java\com\example"/>-->
+<!--      </el-form-item>-->
       <el-form-item label="作者">
         <el-input v-model="gerateForm.author" placeholder="koobe"/>
       </el-form-item>
@@ -42,12 +42,12 @@ import 'element-plus/es/components/message/style/css'
 // import Greet from './components/Greet.vue';
 
 const gerateForm = reactive({
-  db_url: 'mysql://root:r-wz9wop62956dh5k9ed@rm-wz9a2yv489d123yqkdo.mysql.rds.aliyuncs.com:3306',
-  db_name: 'rustdb',
-  db_table: 'sys_user,sys_role_user,sys_role,sys_menu_role,sys_menu',
-  package_name: 'com.example.springboottpl',
-  path_name: 'D:\\workspace\\java\\spring-boot-tpl\\src\\main\\java\\com\\example\\springboottpl\\',
-  t_prefix: 'sys_',
+  db_url: 'mysql://dba_msginfo:UA9655pwd_msg@10.168.11.61:3309',
+  db_name: 'msg_db',
+  db_table: 'uaf_sys_user,uaf_sys_user_role,uaf_sys_role,uaf_sys_role_menu,uaf_sys_menu',
+  package_name: 'com.uaf.devops.assetmanager',
+  path_name: 'D:\\workspace\\java\\uaf-devops-project\\uaf-devops-assetmanager\\src\\main\\java\\com\\uaf\\devops\\assetmanager\\',
+  t_prefix: 'uaf_',
   font_path_name: 'E:\\generate\\',
   author: '刘飞华',
 })

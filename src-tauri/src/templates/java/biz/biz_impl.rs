@@ -1,17 +1,27 @@
-pub fn get_service_impl() -> &'static str {
-    "package {{package_name}}.service.impl;
+pub fn get_biz_impl() -> &'static str {
+    "package {{package_name}}.biz.impl;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import {{package_name}}.entity.{{class_name}}Bean;
 import com.uaf.devops.common.util.ResultPage;
 import {{package_name}}.vo.req.{{class_name}}ReqVo;
 import {{package_name}}.vo.req.{{class_name}}ListReqVo;
 import {{package_name}}.vo.req.{{class_name}}AddReqVo;
 import {{package_name}}.vo.req.{{class_name}}UpdateReqVo;
 import {{package_name}}.vo.resp.{{class_name}}RespVo;
+import {{package_name}}.dao.{{class_name}}Dao;
 import {{package_name}}.biz.{{class_name}}Biz;
-import {{package_name}}.service.{{class_name}}Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 /**
  * 描述：{{table_comment}}
@@ -19,10 +29,10 @@ import {{package_name}}.service.{{class_name}}Service;
  * 日期：{{current_time}}
  */
 @Service
-public class {{class_name}}ServiceImpl implements {{class_name}}Service {
+public class {{class_name}}BizImpl implements {{class_name}}Biz {
 
    @Autowired
-   private {{class_name}}Biz {{class_name_var}}Biz;
+   private {{class_name}}Dao {{class_name_var}}Dao;
 
    /**
     * 查询{{table_comment}}
@@ -35,7 +45,9 @@ public class {{class_name}}ServiceImpl implements {{class_name}}Service {
    @Override
    public {{class_name}}RespVo query{{class_name}}({{class_name}}ReqVo {{class_name_var}}){
 
-       return {{class_name_var}}Biz.query{{class_name}}({{class_name_var}});
+       {{class_name}}Bean query = {{class_name_var}}Dao.query{{class_name}}({{class_name}}Bean.builder().build());
+
+       return {{class_name}}RespVo.builder().build();
    }
 
    /**
@@ -49,7 +61,18 @@ public class {{class_name}}ServiceImpl implements {{class_name}}Service {
    @Override
    public ResultPage<{{class_name}}RespVo> query{{class_name}}List({{class_name}}ListReqVo {{class_name_var}}){
 
-        return {{class_name_var}}Biz.query{{class_name}}List({{class_name_var}});
+       PageHelper.startPage({{class_name_var}}.getCurrent(), {{class_name_var}}.getPageSize());
+	   List<{{class_name}}Bean> query = {{class_name_var}}Dao.query{{class_name}}List({{class_name}}Bean.builder().build());
+       PageInfo<{{class_name}}Bean> pageInfo = new PageInfo<>(query);
+
+	   List<{{class_name}}RespVo> list = pageInfo.getList().stream().map(x -> {
+		   {{class_name}}RespVo resp = new {{class_name}}RespVo();
+		   BeanUtils.copyProperties(x, resp);
+		   return resp;
+	   }).collect(Collectors.toList());
+
+        return new ResultPage<>(list,pageInfo.getPageNum(),pageInfo.getPageSize(),pageInfo.getTotal());
+
    }
 
    /**
@@ -63,7 +86,7 @@ public class {{class_name}}ServiceImpl implements {{class_name}}Service {
    @Override
    public int save{{class_name}}({{class_name}}AddReqVo {{class_name_var}}){
 
-        return {{class_name_var}}Biz.save{{class_name}}({{class_name_var}});
+        return {{class_name_var}}Dao.save{{class_name}}({{class_name}}Bean.builder().build());
    }
 
    /**
@@ -76,7 +99,7 @@ public class {{class_name}}ServiceImpl implements {{class_name}}Service {
     */
    @Override
    public int delete{{class_name}}(String ids){
-		return {{class_name_var}}Biz.delete{{class_name}}(ids);
+		return {{class_name_var}}Dao.delete{{class_name}}(Arrays.stream(ids.split(\",\")).map(Integer::parseInt).collect(Collectors.toList()));
    }
 
    /**
@@ -90,7 +113,7 @@ public class {{class_name}}ServiceImpl implements {{class_name}}Service {
    @Override
    public int update{{class_name}}({{class_name}}UpdateReqVo {{class_name_var}}){
 
-        return {{class_name_var}}Biz.update{{class_name}}({{class_name_var}});
+        return {{class_name_var}}Dao.update{{class_name}}({{class_name}}Bean.builder().build());
    }
 
 }"

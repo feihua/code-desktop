@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class {{class_name}} implements Serializable {
+public class {{class_name}}Bean implements Serializable {
 {% for column in java_columns %}
     //{{column.column_comment}}
     private {{column.java_type}} {{column.java_name}};

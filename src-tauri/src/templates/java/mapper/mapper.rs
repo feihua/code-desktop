@@ -3,7 +3,7 @@ pub fn get_mapper() -> &'static str {
 <!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"https://mybatis.org/dtd/mybatis-3-mapper.dtd\">
     <mapper namespace=\"{{package_name}}.dao.{{class_name}}Dao\">
 
-    <resultMap id=\"BaseResultMap\" type=\"{{package_name}}.entity.{{class_name}}\">{% for column in java_columns %}
+    <resultMap id=\"BaseResultMap\" type=\"{{package_name}}.entity.{{class_name}}Bean\">{% for column in java_columns %}
         <result column=\"{{column.db_name}}\" property=\"{{column.java_name}}\" jdbcType=\"{{column.jdbc_type}}\"/>{% endfor %}
     </resultMap>
 
@@ -11,11 +11,7 @@ pub fn get_mapper() -> &'static str {
         {{all_columns}}
     </sql>
 
-    <select id=\"query\" parameterType=\"{{package_name}}.entity.{{class_name}}\" resultMap=\"BaseResultMap\">
-
-    </select>
-
-    <select id=\"query{{class_name}}List\" parameterType=\"{{package_name}}.entity.{{class_name}}\" resultMap=\"BaseResultMap\">
+    <select id=\"query{{class_name}}\" parameterType=\"{{package_name}}.entity.{{class_name}}Bean\" resultMap=\"BaseResultMap\">
         select
         <include refid=\"Base_Column_List\"/>
         from {{original_table_name}}
@@ -26,7 +22,18 @@ pub fn get_mapper() -> &'static str {
         </where>
     </select>
 
-    <insert id=\"insert\" parameterType=\"{{package_name}}.entity.{{class_name}}\">
+    <select id=\"query{{class_name}}List\" parameterType=\"{{package_name}}.entity.{{class_name}}Bean\" resultMap=\"BaseResultMap\">
+        select
+        <include refid=\"Base_Column_List\"/>
+        from {{original_table_name}}
+        <where> {% for column in java_columns %}
+            <!--<if test=\"{{column.java_name}} != null\">-->
+            <!--    and {{column.db_name}} = #{ {{column.java_name}}}-->
+            <!--</if>-->{% endfor %}
+        </where>
+    </select>
+
+    <insert id=\"save{{class_name}}\" parameterType=\"{{package_name}}.entity.{{class_name}}Bean\">
         insert into {{original_table_name}}
         <trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\">{% for column in java_columns %}
             <if test=\"{{column.java_name}} != null\">
@@ -40,7 +47,7 @@ pub fn get_mapper() -> &'static str {
         </trim>
     </insert>
 
-    <delete id=\"delete\">
+    <delete id=\"delete{{class_name}}\">
         delete from {{original_table_name}} where id in
         <foreach collection=\"list\" item=\"id\" index=\"index\"
             open=\"(\" close=\")\" separator=\",\">
@@ -48,7 +55,7 @@ pub fn get_mapper() -> &'static str {
         </foreach>
     </delete>
 
-    <update id=\"update\" parameterType=\"{{package_name}}.entity.{{class_name}}\">
+    <update id=\"update{{class_name}}\" parameterType=\"{{package_name}}.entity.{{class_name}}Bean\">
         update {{original_table_name}}
         <set>{% for column in java_columns %}
             <if test=\"{{column.java_name}} != null\">

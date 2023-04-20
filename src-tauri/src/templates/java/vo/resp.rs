@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(\"{{table_comment}}响应vo\")
-public class {{class_name}}Resp implements Serializable {
+public class {{class_name}}RespVo implements Serializable {
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
     private {{column.java_type}} {{column.java_name}};

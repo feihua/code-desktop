@@ -1,5 +1,5 @@
-pub fn get_service() -> &'static str {
-    "package {{package_name}}.service;
+pub fn get_biz() -> &'static str {
+    "package {{package_name}}.biz;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ import {{package_name}}.vo.resp.{{class_name}}RespVo;
  * 作者：{{author}}
  * 日期：{{current_time}}
  */
-public interface {{class_name}}Service {
+public interface {{class_name}}Biz {
 
    /**
     * 查询{{table_comment}}

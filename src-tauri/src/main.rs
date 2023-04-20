@@ -22,7 +22,9 @@ use crate::templates::java::react::data::get_react_data;
 use crate::templates::java::react::index::get_react_index;
 use crate::templates::java::react::r_service::get_react_service;
 use crate::templates::java::service::service::get_service;
-use crate::templates::java::service::service_impl::get_impl;
+use crate::templates::java::service::service_impl::get_service_impl;
+use crate::templates::java::biz::biz::get_biz;
+use crate::templates::java::biz::biz_impl::get_biz_impl;
 use crate::templates::java::vo::req::{get_add_req, get_list_req, get_req, get_update_req};
 use crate::templates::java::vo::resp::get_resp;
 use crate::templates::java::vue::components::add_form::get_vue_add;
@@ -123,17 +125,19 @@ fn generate(db_url: &str, db_name: &str, original_table_name: &str, package_name
 }
 
 fn create_from_str(tera: Tera, class_name: &str, mut context: &mut Context, save_path: &str) {
-    write_str_file(tera.clone(), &mut context, get_entity(), format!("entity/{}.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_entity(), format!("entity/{}Bean.java", class_name).as_str(), save_path);
     write_str_file(tera.clone(), &mut context, get_controller(), format!("controller/{}Controller.java", class_name).as_str(), save_path);
     write_str_file(tera.clone(), &mut context, get_dao(), format!("dao/{}Dao.java", class_name).as_str(), save_path);
     write_str_file(tera.clone(), &mut context, get_mapper(), format!("mapper/{}Mapper.xml", class_name).as_str(), save_path);
     write_str_file(tera.clone(), &mut context, get_service(), format!("service/{}Service.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_impl(), format!("service/impl/{}ServiceImpl.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_req(), format!("vo/req/{}Req.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_list_req(), format!("vo/req/{}ListReq.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_add_req(), format!("vo/req/{}AddReq.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_update_req(), format!("vo/req/{}UpdateReq.java", class_name).as_str(), save_path);
-    write_str_file(tera.clone(), &mut context, get_resp(), format!("vo/resp/{}Resp.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_service_impl(), format!("service/impl/{}ServiceImpl.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_biz(), format!("biz/{}Biz.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_biz_impl(), format!("biz/impl/{}BizImpl.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_req(), format!("vo/req/{}ReqVo.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_list_req(), format!("vo/req/{}ListReqVo.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_add_req(), format!("vo/req/{}AddReqVo.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_update_req(), format!("vo/req/{}UpdateReqVo.java", class_name).as_str(), save_path);
+    write_str_file(tera.clone(), &mut context, get_resp(), format!("vo/resp/{}RespVo.java", class_name).as_str(), save_path);
 }
 
 fn create_vue_from_str(tera: Tera, table_name: &str, mut context: &mut Context, save_path: &str) {
