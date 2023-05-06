@@ -65,13 +65,14 @@ import lombok.NoArgsConstructor;
 public class {{class_name}}ListReqVo implements Serializable {
 
     @ApiModelProperty(\"当前页\")
-    @NotNull(message = \"current当前页不能为空\")
-    @Min(value=1,message = \"current当前页不能小于1\")
-    private int current;
+    @NotNull(message = \"pageNum当前页不能为空\")
+    @Min(value=1,message = \"pageNum当前页不能小于1\")
+    private Integer pageNum;
 
     @ApiModelProperty(\"每页的数量\")
     @NotNull(message = \"pageSize每页的数量不能为空\")
-    private int pageSize;
+    private Integer pageSize;
+
 {% for column in java_columns %}
     @ApiModelProperty(\"{{column.column_comment}}\")
     //@NotBlank(message = \"{{column.java_name}}{{column.column_comment}}不能为空\")

@@ -61,7 +61,7 @@ public class {{class_name}}BizImpl implements {{class_name}}Biz {
    @Override
    public ResultPage<{{class_name}}RespVo> query{{class_name}}List({{class_name}}ListReqVo {{class_name_var}}){
 
-       PageHelper.startPage({{class_name_var}}.getCurrent(), {{class_name_var}}.getPageSize());
+       PageHelper.startPage({{class_name_var}}.getPageNum(), {{class_name_var}}.getPageSize());
 	   List<{{class_name}}Bean> query = {{class_name_var}}Dao.query{{class_name}}List({{class_name}}Bean.builder().build());
        PageInfo<{{class_name}}Bean> pageInfo = new PageInfo<>(query);
 

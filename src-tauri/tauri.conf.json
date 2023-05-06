@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "code-desktop",
-    "version": "0.0.0"
+    "version": "0.1.1"
   },
   "tauri": {
     "allowlist": {
@@ -64,7 +64,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "code desktop v0.1",
+        "title": "code desktop v0.1.1",
         "width": 800
       }
     ]
