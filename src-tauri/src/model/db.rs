@@ -56,6 +56,7 @@ fn get_java_type(db_type: &str) -> String {
     map.insert("enum", String::from("String"));
     map.insert("set", String::from("String"));
     map.insert("varchar", String::from("String"));
+    map.insert("text", String::from("String"));
     map.insert("char", String::from("String"));
     map.insert("datetime", String::from("Date"));
 
@@ -78,6 +79,7 @@ fn get_jdbc_type(db_type: &str) -> String {
     map.insert("decimal", String::from("DECIMAL"));
     map.insert("bigint", String::from("BIGINT"));
     map.insert("varchar", String::from("VARCHAR"));
+    map.insert("text", String::from("VARCHAR"));
     map.insert("char", String::from("CHAR"));
     map.insert("date", String::from("DATE"));
     map.insert("datetime", String::from("TIMESTAMP"));
@@ -104,6 +106,7 @@ fn get_ts_type(db_type: &str) -> String {
     map.insert("decimal", String::from("number"));
     map.insert("bigint", String::from("number"));
     map.insert("varchar", String::from("string"));
+    map.insert("text", String::from("string"));
     map.insert("char", String::from("string"));
     map.insert("date", String::from("string"));
     map.insert("datetime", String::from("string"));
