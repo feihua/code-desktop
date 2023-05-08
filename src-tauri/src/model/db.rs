@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 use mysql::*;
 use mysql::prelude::*;
 use heck::ToLowerCamelCase;
+use heck::ToUpperCamelCase;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Columns {
@@ -19,6 +20,7 @@ pub struct Columns {
 pub struct JavaColumns {
     pub db_name: String,
     pub java_name: String,
+    pub java_name_letter: String,
     pub db_type: String,
     pub java_type: String,
     pub jdbc_type: String,
@@ -129,6 +131,7 @@ pub fn get_java_columns(columns: Vec<Columns>) -> Vec<JavaColumns> {
         java_columns.push(JavaColumns {
             db_name: x.column_name.clone(),
             java_name: ToLowerCamelCase::to_lower_camel_case(x.column_name.as_str()),
+            java_name_letter: ToUpperCamelCase::to_upper_camel_case(x.column_name.as_str()),
             db_type: x.data_type.clone(),
             java_type: get_java_type(x.data_type.as_str()).to_string(),
             jdbc_type: get_jdbc_type(x.data_type.as_str()).to_string(),

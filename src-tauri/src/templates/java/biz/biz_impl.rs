@@ -44,10 +44,12 @@ public class {{class_name}}BizImpl implements {{class_name}}Biz {
     */
    @Override
    public {{class_name}}RespVo query{{class_name}}({{class_name}}ReqVo {{class_name_var}}){
+        {{class_name}}Bean bean = new {{class_name}}Bean();{% for column in java_columns %}
+        //bean.set{{column.java_name_letter}}({{class_name_var}}.get{{column.java_name_letter}}());{% endfor %}
 
-       {{class_name}}Bean query = {{class_name_var}}Dao.query{{class_name}}({{class_name}}Bean.builder().build());
+        {{class_name}}Bean query = {{class_name_var}}Dao.query{{class_name}}(bean);
 
-       return {{class_name}}RespVo.builder().build();
+        return {{class_name}}RespVo.builder().build();
    }
 
    /**
@@ -60,16 +62,18 @@ public class {{class_name}}BizImpl implements {{class_name}}Biz {
     */
    @Override
    public ResultPage<{{class_name}}RespVo> query{{class_name}}List({{class_name}}ListReqVo {{class_name_var}}){
+        {{class_name}}Bean bean = new {{class_name}}Bean();{% for column in java_columns %}
+        //bean.set{{column.java_name_letter}}({{class_name_var}}.get{{column.java_name_letter}}());{% endfor %}
 
-       PageHelper.startPage({{class_name_var}}.getPageNum(), {{class_name_var}}.getPageSize());
-	   List<{{class_name}}Bean> query = {{class_name_var}}Dao.query{{class_name}}List({{class_name}}Bean.builder().build());
-       PageInfo<{{class_name}}Bean> pageInfo = new PageInfo<>(query);
+        PageHelper.startPage({{class_name_var}}.getPageNum(), {{class_name_var}}.getPageSize());
+	    List<{{class_name}}Bean> query = {{class_name_var}}Dao.query{{class_name}}List(bean);
+        PageInfo<{{class_name}}Bean> pageInfo = new PageInfo<>(query);
 
-	   List<{{class_name}}RespVo> list = pageInfo.getList().stream().map(x -> {
+	    List<{{class_name}}RespVo> list = pageInfo.getList().stream().map(x -> {
 		   {{class_name}}RespVo resp = new {{class_name}}RespVo();
 		   BeanUtils.copyProperties(x, resp);
 		   return resp;
-	   }).collect(Collectors.toList());
+	    }).collect(Collectors.toList());
 
         return new ResultPage<>(list,pageInfo.getPageNum(),pageInfo.getPageSize(),pageInfo.getTotal());
 
@@ -85,8 +89,10 @@ public class {{class_name}}BizImpl implements {{class_name}}Biz {
     */
    @Override
    public int save{{class_name}}({{class_name}}AddReqVo {{class_name_var}}){
+        {{class_name}}Bean bean = new {{class_name}}Bean();{% for column in java_columns %}
+        bean.set{{column.java_name_letter}}({{class_name_var}}.get{{column.java_name_letter}}());{% endfor %}
 
-        return {{class_name_var}}Dao.save{{class_name}}({{class_name}}Bean.builder().build());
+        return {{class_name_var}}Dao.save{{class_name}}(bean);
    }
 
    /**
@@ -112,8 +118,10 @@ public class {{class_name}}BizImpl implements {{class_name}}Biz {
     */
    @Override
    public int update{{class_name}}({{class_name}}UpdateReqVo {{class_name_var}}){
+        {{class_name}}Bean bean = new {{class_name}}Bean();{% for column in java_columns %}
+        bean.set{{column.java_name_letter}}({{class_name_var}}.get{{column.java_name_letter}}());{% endfor %}
 
-        return {{class_name_var}}Dao.update{{class_name}}({{class_name}}Bean.builder().build());
+        return {{class_name_var}}Dao.update{{class_name}}(bean);
    }
 
 }"
