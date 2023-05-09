@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,8 +69,8 @@ public class {{class_name}}BizImpl implements {{class_name}}Biz {
         PageInfo<{{class_name}}Bean> pageInfo = new PageInfo<>(query);
 
 	    List<{{class_name}}RespVo> list = pageInfo.getList().stream().map(x -> {
-		   {{class_name}}RespVo resp = new {{class_name}}RespVo();
-		   BeanUtils.copyProperties(x, resp);
+            {{class_name}}RespVo resp = new {{class_name}}RespVo();{% for column in java_columns %}
+            resp.set{{column.java_name_letter}}(x.get{{column.java_name_letter}}());{% endfor %}
 		   return resp;
 	    }).collect(Collectors.toList());
 
